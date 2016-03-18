@@ -7,6 +7,7 @@
  * @company : Ice-Development
  * @see : www.ice-dev.com
 
+ * edit jh 18/03/2016 : detection safari < 7
  * edit jh : test JS pour navigateur internet Android defaut
  
  * Alert-IE.php affiche un message d'alerte invitant les utilisateurs d'IE9 et inférieur + Nav. Android defaut à utiliser de préférence un navigateur à jour, tel que Chrome ou Firefox.
@@ -197,7 +198,38 @@ function masque_div () {
 		document.write(' <style>#alert-ie { display: block;} </style>');
 	}
 
+	function get_browser(){
+		var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []; 
+		if(/trident/i.test(M[1])){
+			tem=/\brv[ :]+(\d+)/g.exec(ua) || []; 
+			return {name:'IE',version:(tem[1]||'')};
+			}   
+		if(M[1]==='Chrome'){
+			tem=ua.match(/\bOPR\/(\d+)/)
+			if(tem!=null)   {return {name:'Opera', version:tem[1]};}
+			}   
+		M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+		if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+		return {
+		  name: M[0],
+		  version: M[1]
+		};
+	 }
+ 
+	var browser=get_browser();
+	
 
+	// Native Android Browser
+	var isAndroidBrowser = isAndroidMobile && (appleWebKitVersion !== null && appleWebKitVersion < 537) || (chromeVersion !== null && chromeVersion < 37);
+
+	if(browser.name == 'Safari' && browser.version < 7){
+		oldSafariBrowser = true;
+	}
+	
+	// si on est sur "safari 7-" 
+	if(oldSafariBrowser){
+		document.write(' <style>#alert-ie { display: block;} </style>');
+	}
 </script>
 
 <!--[if (lt IE 9)]> <style>#alert-ie { display: block;} </style><![endif]-->
