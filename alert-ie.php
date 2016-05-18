@@ -232,4 +232,4 @@ function masque_div () {
 	}
 </script>
 
-<!--[if (lt IE 9)]> <style>#alert-ie { display: block;} </style><![endif]-->
+<!--[if (lte IE 9)]><style>#alert-ie{ display: block;} </style><![endif]-->
