@@ -65,7 +65,7 @@
 	 * 2. Enlève toutes les marges des titres 2
 	 */
 
-	#alert-ie h2 {
+	#alert-ie .h2 {
 		font-size: 20px;
 		float: none; /* 1 */
 		margin: 0; /* 2 */
@@ -139,7 +139,7 @@
 
 <div id="alert-ie">
 	<div>
-		<h2>Attention, vous utilisez un navigateur obsol&egrave;te</h2> <br>
+		<span class="h2">Attention, vous utilisez un navigateur obsol&egrave;te</span> <br>
 		<p>
 			Pour votre s&eacute;curit&eacute; et votre confort, nous vous recommandons d'utiliser un navigateur plus r&eacute;cent et &agrave; jour.
 			<br><br> Pour connaitre les derni&egrave;res versions des navigateurs internet, consultez : <a href="http://browsehappy.com/" target="_blank">www.browsehappy.com</a>
